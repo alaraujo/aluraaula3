@@ -1,0 +1,24 @@
+name: "consturção do atefacto"
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: unbuntu-latest
+    steps:
+        - uses: actions/cjheckout@v4
+
+        - name: Set up Go
+          uses: actions/setup-go@v4
+          with:
+            go-version: '1.22'
+        - name: Build
+          run: go build main.go
+
+        - name: Projeto compilado
+          uses: actions/upload-artifact@v4
+          with:
+           name: projeto_compilado
+           path: main
